@@ -22,11 +22,6 @@ def call_api(sepal_length, sepal_width, petal_length, petal_width):
     st.write("The predicted class is: ", response_json['prediction'])
 
 
-def send_image_to_api(imagen):
-    print("Sending image to API", imagen)
-    file_bytes = imagen.read()
-    url = "http://localhost:8080/iris-model/predict?model_name=iris_model"
-
 
 def app():
 
@@ -45,14 +40,10 @@ def app():
     petal_length = st.number_input('Petal length', min_value=0.0, max_value=10.0, value=5.0)
     petal_width = st.number_input('Petal width', min_value=0.0, max_value=10.0, value=5.0)
 
-    imagen = st.file_uploader("Upload a file", type=["jpg", "png", "jpeg"])
-    if imagen is not None:
-        st.image(imagen, caption='Sunrise by the mountains', use_column_width=True)
-
+    
     is_clicked = st.button('Classify')
     if is_clicked:
         call_api(sepal_length, sepal_width, petal_length, petal_width)
-        send_image_to_api(imagen)
         st.balloons()
 
 
