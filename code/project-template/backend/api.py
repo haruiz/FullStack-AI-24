@@ -8,7 +8,7 @@ from iris_model_methods import iris_model_router
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     # Load the ML model
-    print("here we should load the model")
+    print("here you should add the code you want to run when the app is starting")
     # We are going to use a dictionary to store the models
     app.state.model_garden = dict()
     # register the iris model
@@ -21,7 +21,7 @@ async def lifespan(app: FastAPI):
     app.state.model_garden["iris_model"] = model
     yield 
     # Clean up the ML models and release the resources
-    print("here we should clean up the model")
+    print("here you should add the code you want to run when the app is shutting down")
 
 # creating the API
 app = FastAPI(lifespan=lifespan)
