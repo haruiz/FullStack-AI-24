@@ -16,6 +16,7 @@ tensorflow-datasets = "^4.9.2"
 fastapi = "^0.101.1"
 uvicorn = "^0.23.2"
 fastapi-utils = "^0.2.1"
+yellowbrick = "^1.5"
 
 
 [tool.poetry.group.dev.dependencies]
