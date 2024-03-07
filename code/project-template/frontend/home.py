@@ -1,14 +1,18 @@
 import streamlit as st
 import requests
 import json
+import os
+from streamlit_js_eval import get_geolocation
 
+API_URL = os.getenv('API_URL', 'http://localhost:8080')
+print("API_URL", API_URL)
 
 
 def call_iris_model(sepal_length, sepal_width, petal_length, petal_width):
     """
     This function calls the iris model
     """
-    url = "http://localhost:8080/iris-model/predict"
+    url = f"{API_URL}/iris-model/predict"
 
     payload = json.dumps({
     "sepal_length": sepal_length,
@@ -23,17 +27,17 @@ def call_iris_model(sepal_length, sepal_width, petal_length, petal_width):
     response = requests.request("POST", url, headers=headers, data=payload)
     return response.json()
 
-def call_flowers_model(image):
+def call_flowers_model(image_file, lat=0.0, lng=0.0):
     """
     This function calls the flowers model
     """
-    import requests
-
-    url = "http://localhost:8080/flowers-model/predict"
-    payload = {'lat': '-90.00',
-    'lng': '123455.0'}
+    url = f"{API_URL}/flowers-model/predict"
+    payload = {
+        'lat': lat,
+        'lng': lng
+        }
     files=[
-    ('image',('sunflowers.jpg',open('/Users/haruiz/Desktop/sunflowers.jpg','rb'),'image/jpeg'))
+    ('image',image_file)
     ]
     headers = {}
     response = requests.request("POST", url, headers=headers, data=payload, files=files)
@@ -65,14 +69,15 @@ def flowers_model_form():
     """
     st.title('Flowers Model')
     st.write('This is a web application that allows you to interact with the flowers model')
-    file = st.file_uploader("Upload an image", type=["jpg", "png", "jpeg"])
-
-    if file is not None:
-        image = file.read()
-        st.image(image, caption='Uploaded Image.', use_column_width=True)
+    lat = st.number_input('Latitude', min_value=-90.0, max_value=90.0, value=0.0)
+    lng = st.number_input('Longitude', min_value=-180.0, max_value=180.0, value=0.0)
+    image_file = st.file_uploader("Upload an image", type=["jpg", "png", "jpeg"])
+    
+    if image_file is not None:
+        st.image(image_file, caption='Uploaded Image.', use_column_width=True)
         is_clicked = st.button('Classify')
         if is_clicked:
-            json_result = call_flowers_model(image)
+            json_result = call_flowers_model(image_file, lat, lng)
             st.write(json_result)
             st.snow()
 

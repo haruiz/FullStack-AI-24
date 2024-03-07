@@ -1,0 +1,27 @@
+services:
+  backend:
+    image: model-garden-backend:latest
+    container_name: model-garden-api
+    ports:
+      - 8000:8000
+    build:
+      context: backend
+      dockerfile: Dockerfile
+    volumes:
+      - ./backend:/app 
+  frontend:
+    image: model-garden-frontend:latest
+    container_name: model-garden-web
+    ports:
+      - 8501:8501
+    build:
+      context: frontend
+      dockerfile: Dockerfile
+    depends_on:
+      backend:
+        condition: service_started
+    environment:
+      - API_URL=http://backend:8000
+    volumes:
+      - ./frontend:/app
+    

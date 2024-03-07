@@ -22,8 +22,9 @@ async def predict(request: Request,
                   image: UploadFile = File(...),
         lat: Optional[float] = Form(default=None),
         lng: Optional[float] = Form(default=None)):
-    
     image_bytes: bytes = await image.read() # read the image as bytes
+    # with open("image.jpg", "wb") as f:
+    #     f.write(image_bytes)
     model_garden = request.app.state.model_garden
     flowers_model = model_garden["flowers-model"]
     predictions = flowers_model.predict(image_bytes)

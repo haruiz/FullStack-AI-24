@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from contextlib import asynccontextmanager
 from models import IrisModel, FlowersModel, Framework
-from users_methods import users_router
+from users_api import router as users_router
 from iris_model_api import router as iris_model_router
 from flowers_model_api import router as flowers_model_router
 
@@ -10,6 +10,7 @@ from flowers_model_api import router as flowers_model_router
 async def lifespan(app: FastAPI):
     # Load the ML model
     print("here you should add the code you want to run when the app is starting")
+    print("Loading the ML models.....")
     # create a dictionary to save a ref to the registered models (model garden)
     app.state.model_garden = dict()
 

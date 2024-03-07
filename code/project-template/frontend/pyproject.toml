@@ -10,6 +10,8 @@ python = "^3.10"
 streamlit = "^1.31.1"
 watchdog = "^4.0.0"
 requests = "^2.31.0"
+streamlit-geolocation = "^0.0.10"
+streamlit-js-eval = "^0.1.7"
 
 
 [build-system]

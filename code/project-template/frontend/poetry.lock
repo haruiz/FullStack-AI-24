@@ -982,6 +982,34 @@ watchdog = {version = ">=2.1.5", markers = "platform_system != \"Darwin\""}
 snowflake = ["snowflake-connector-python (>=2.8.0)", "snowflake-snowpark-python (>=0.9.0)"]
 
 [[package]]
+name = "streamlit-geolocation"
+version = "0.0.10"
+description = "A custom Streamlit component to get the users location via js navigator.geolocation."
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "streamlit_geolocation-0.0.10-py3-none-any.whl", hash = "sha256:e9d9eb61238db468076ef374027a1691fa6696f44d4e4472b0123df03dc0d9ea"},
+    {file = "streamlit_geolocation-0.0.10.tar.gz", hash = "sha256:0617a39aa26a6019f9b6989e31a310742fe5fe1728321474cf8b5f03a7146d4c"},
+]
+
+[package.dependencies]
+streamlit = ">=1.0.0"
+
+[[package]]
+name = "streamlit-js-eval"
+version = "0.1.7"
+description = "A custom Streamlit component to evaluate arbitrary Javascript expressions."
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "streamlit_js_eval-0.1.7-py3-none-any.whl", hash = "sha256:c99c23d1c6e2a27fd45794262e2ac07befaef9603a86e4e325a9e980cad8c78d"},
+    {file = "streamlit_js_eval-0.1.7.tar.gz", hash = "sha256:af80eff45e2f23a676588578aff7d2790080360528c656f4a4476c1484574c97"},
+]
+
+[package.dependencies]
+streamlit = ">=1.0.0"
+
+[[package]]
 name = "tenacity"
 version = "8.2.3"
 description = "Retry code until it succeeds"
@@ -1174,4 +1202,4 @@ testing = ["big-O", "jaraco.functools", "jaraco.itertools", "more-itertools", "p
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "bb16b42c6596d43147c65497734ec71b7da3f0126f0c8186a19a0122c38ccbb2"
+content-hash = "07700fc58b088d922615a8a8c079a29daac3d1d48ff5663ce35ba6f0baeb23a6"
