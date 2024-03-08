@@ -12,6 +12,7 @@ watchdog = "^4.0.0"
 requests = "^2.31.0"
 streamlit-geolocation = "^0.0.10"
 streamlit-js-eval = "^0.1.7"
+colorama = "^0.4.6"
 
 
 [build-system]

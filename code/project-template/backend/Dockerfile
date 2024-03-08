@@ -1,5 +1,6 @@
 ARG PYTHON_VERSION=3.10.9
 FROM python:${PYTHON_VERSION}-slim as base
+
 # Prevents Python from writing pyc files.
 ENV PYTHONDONTWRITEBYTECODE=1
 
@@ -9,7 +10,7 @@ ENV PYTHONUNBUFFERED=1
 
 
 FROM base AS builder
-WORKDIR /tmp
+WORKDIR /tmp 
 RUN pip install poetry
 RUN poetry self add poetry-plugin-export
 COPY pyproject.toml  /tmp/

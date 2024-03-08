@@ -24,4 +24,29 @@ services:
       - API_URL=http://backend:8000
     volumes:
       - ./frontend:/app
+  db:
+    container_name: model-garden.db
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=demodb
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    restart: always
+  pgadmin:
+    container_name: model-garden.db.pgadmin
+    image: dpage/pgadmin4
+    ports:
+      - "5050:80"
+    depends_on:
+      - db
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=pgadmin4@pgadmin.org
+      - PGADMIN_DEFAULT_PASSWORD=admin
+    logging:
+      driver: none
+
     

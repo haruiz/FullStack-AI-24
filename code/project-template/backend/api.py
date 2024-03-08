@@ -21,7 +21,7 @@ async def lifespan(app: FastAPI):
     app.state.model_garden["iris-model"] = iris_model
     app.state.model_garden["flowers-model"] = flowers_model
 
-    yield 
+    yield  
     # Clean up the ML models and release the resources
     print("here you should add the code you want to run when the app is shutting down")
 
