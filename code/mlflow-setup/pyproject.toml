@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "mlflow-intro"
+version = "0.1.0"
+description = ""
+authors = ["haruiz <henryruiz22@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+google-cloud-storage = "^2.15.0"
+google-cloud-secret-manager = "^2.18.3"
+mlflow = "^2.11.1"
+click = "^8.1.7"
+psycopg2-binary = "^2.9.9"
+gunicorn = "^21.2.0"
+wsgi-basic-auth = "^1.1.0"
+pg8000 = "^1.30.5"
+python-dotenv = "^1.0.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

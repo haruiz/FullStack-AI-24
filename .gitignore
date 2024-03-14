@@ -4,8 +4,13 @@ __pycache__/
 *$py.class
 
 # C extensions
+.idea/
+mlartifacts/
+mlruns/
+secrets/
+data/
+.DS_Store/
 *.so
-*models/
 models/
 # Distribution / packaging
 .Python
