@@ -1,0 +1,47 @@
+[tool.poetry]
+name = "data-managment"
+version = "0.1.0"
+description = ""
+authors = ["haruiz <henryruiz22@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.10,<3.11"
+notebook = "^7.1.2"
+keras-cv = "^0.8.2"
+simpy = "^4.1.1"
+matplotlib = "^3.8.3"
+imageio = "^2.34.0"
+pillow = "^10.2.0"
+scipy = "^1.12.0"
+scikit-learn = "^1.4.1.post1"
+numpy = "^1.26.4"
+transformers = "^4.38.2"
+google-cloud-storage = "^2.15.0"
+
+[tool.poetry.group.tf_mac]
+optional = true
+
+[tool.poetry.group.tf_mac.dependencies]
+tensorflow-macos = "^2.13.0"
+tensorflow-metal = "^1.0.1"
+
+[tool.poetry.group.tf_win]
+optional = true
+
+[tool.poetry.group.tf_win.dependencies]
+tensorflow = "^2.13.0"
+
+[tool.poetry.group.tf_linux]
+optional = true
+
+[tool.poetry.group.tf_linux.dependencies]
+tensorflow = "^2.13.0"
+
+[tool.poetry.group.dev.dependencies]
+black = "^24.2.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
