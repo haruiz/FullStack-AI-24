@@ -166,7 +166,6 @@ else
 fi
 
 # secret manager
-# 11. create secret manager secret
 MLFlow_ARTIFACT_URI="gs://$BUCKET_NAME"
 MLFlow_DATABASE_CONN_STR="postgresql+pg8000://$DATABASE_USER:$DATABASE_USER_PASSWORD@//?unix_sock=/cloudsql/$PROJECT_ID:$DEFAULT_REGION:$INSTANCE_NAME"
 MLFlow_TRACKING_USERNAME="mlflow"

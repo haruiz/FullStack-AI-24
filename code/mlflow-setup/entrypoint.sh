@@ -3,6 +3,7 @@
 set -e
 
 # Verify that all required variables are set
+GCP_PROJECT=$(gcloud config get-value project)
 if [[ -z "${GCP_PROJECT}" ]]; then
     echo "Error: GCP_PROJECT not set"
     exit 1
@@ -46,10 +47,9 @@ if [[ -z "${HOST}" ]]; then
 fi
 
 
-#postgresql+pg8000://<dbuser>:<dbpass>@/<dbname>?unix_sock=/cloudsql/tc-global-dlabs:europe-west3:mlfow/.s.PGSQL.5432
 export WSGI_AUTH_CREDENTIALS="${MLFLOW_TRACKING_USERNAME}:${MLFLOW_TRACKING_PASSWORD}"
 export _MLFLOW_SERVER_ARTIFACT_ROOT="${ARTIFACT_URL}"
-export _MLFLOW_SERVER_FILE_STORE="postgresql+pg8000://mlflow:mlflow@/mlflow?unix_sock=cloudsql/mlflow-postgres/.s.PGSQL.5432"
+export _MLFLOW_SERVER_FILE_STORE=${HOST}
 
 # Start MLflow and ngingx using supervisor
 exec gunicorn -b "${HOST}:${PORT}" -w 4 --log-level debug --access-logfile=- --error-logfile=- --log-level=debug main:app

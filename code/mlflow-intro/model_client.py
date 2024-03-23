@@ -9,7 +9,7 @@ def test_iris_model():
       Test the iris model
     :return:
     """
-    url = "http://127.0.0.1:8081/invocations"
+    url = "http://127.0.0.1:8082/invocations"
     labels = ["setosa", "versicolor", "virginica"]
 
     payload = json.dumps({
@@ -27,7 +27,7 @@ def test_iris_model():
     response_json = response.json()
     predictions = response_json["predictions"]
     class_index = predictions[0]
-    print(labels[class_index])
+    print(f"Predicted class: {labels[class_index]}")
 
 
 def test_flowers_model():
@@ -50,9 +50,11 @@ def test_flowers_model():
     }
     response = requests.request("POST", url, headers=headers, data=payload)
     response_json = response.json()
+    print(response_json)
     predictions = response_json["predictions"]
-    softmax = np.exp(predictions) / np.sum(np.exp(predictions), axis=1)
-    argmax = np.argmax(softmax, axis=1)
+    print(predictions)
+    # softmax = np.exp(predictions) / np.sum(np.exp(predictions), axis=1)
+    argmax = np.argmax(predictions, axis=1)
     class_index = argmax[0]
     print(labels[class_index])
 

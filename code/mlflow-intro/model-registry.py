@@ -80,7 +80,6 @@ def set_model_version_alias(model_name, alias, version=None):
     :param alias: alias name
     """
     client = MlflowClient()
-    model = client.get_registered_model(model_name)
     if version is None:
         versions = client.search_model_versions(f"name='{model_name}'")
         if len(versions) == 0:
@@ -129,12 +128,12 @@ def register_iris_model():
     """
     experiment_name = "iris-classification"
     model_name = "iris-classification-model"
-    delete_all_models(experiment_name)
+    # delete_all_models(experiment_name)
     best_run_id = get_best_run_id(experiment_name)
     register_model(best_run_id, model_name)
     create_model_version(best_run_id, model_name)
-    set_model_version_alias(model_name, "production")
-    get_model_signature_by_alias(model_name, "production")
+    set_model_version_alias(model_name, "test")
+    get_model_signature_by_alias(model_name, "test")
 
 
 def register_flowers_model():
@@ -152,7 +151,7 @@ def register_flowers_model():
 
 
 if __name__ == '__main__':
-    mlflow.set_tracking_uri("http://0.0.0.0:4000")
+    mlflow.set_tracking_uri("http://0.0.0.0:4001")
 
     # register_iris_model()
     register_flowers_model()

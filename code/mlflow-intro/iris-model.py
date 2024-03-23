@@ -123,6 +123,6 @@ def run_experiment(experiment_name):
 
 
 if __name__ == '__main__':
-    mlflow.set_tracking_uri("http://0.0.0.0:4000")
+    mlflow.set_tracking_uri("http://0.0.0.0:4001")
     experiment_name = "iris-classification"
     run_experiment(experiment_name)

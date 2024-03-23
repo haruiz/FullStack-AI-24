@@ -10,7 +10,9 @@ os.environ["DB_USER"] = "mlflow-usr"
 os.environ["DB_PASS"] = "mlflow-pass"
 os.environ["DB_NAME"] = "mlflow-db"
 os.environ["DB_PORT"] = "5432"
+os.environ["PROJECT_ID"] = "uao-mlflow-intro"
 os.environ["INSTANCE_HOST"] = "104.198.53.103"
+os.environ["INSTANCE_NAME"] = "mlflow-postgres"
 
 # https://cloud.google.com/docs/authentication/provide-credentials-adc
 def connect_unix_socket() -> sqlalchemy.engine.base.Engine:
@@ -19,10 +21,13 @@ def connect_unix_socket() -> sqlalchemy.engine.base.Engine:
     # secure - consider a more secure solution such as
     # Cloud Secret Manager (https://cloud.google.com/secret-manager) to help
     # keep secrets safe.
-    db_user = "mlflow-usr"  # e.g. 'my-db-user
-    db_pass = "mlflow-pass"  # e.g. 'my-db-pass
-    db_name = "mlflow-db"  # e.g. 'my-database-name
-    unix_socket_path = "cloudsql/uao-mlflow-intro:us-central1:mlflow-postgres"
+    db_user = os.environ["DB_USER"]  # e.g. 'my-db-user'
+    db_pass = os.environ["DB_PASS"]  # e.g. 'my-db-password'
+    db_name = os.environ["DB_NAME"]  # e.g. 'my-database'
+    db_host = os.environ["INSTANCE_HOST"]  # e.g. '
+    postgres_instance_name = os.environ["INSTANCE_NAME"]
+    unix_socket_path = f"cloudsql/{os.environ['PROJECT_ID']}:us-central1:{postgres_instance_name}"
+    print(unix_socket_path)
 
     pool = sqlalchemy.create_engine(
         # Equivalent URL:
@@ -35,6 +40,7 @@ def connect_unix_socket() -> sqlalchemy.engine.base.Engine:
             username=db_user,
             password=db_pass,
             database=db_name,
+            host=db_host,
             query={"unix_sock": f"{unix_socket_path}/.s.PGSQL.5432"},
         ),
 
@@ -80,5 +86,7 @@ def connect_tcp_socket() -> sqlalchemy.engine.base.Engine:
 
 
 if __name__ == '__main__':
+    print(connect_tcp_socket())
+    print("Connection successful!")
     print(connect_unix_socket())
     print("Connection successful!")
